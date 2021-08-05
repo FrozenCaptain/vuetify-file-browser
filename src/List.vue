@@ -145,6 +145,7 @@ export default {
             this.$emit("path-changed", path);
         },
         async load() {
+            
             this.$emit("loading", true);
             if (this.isDir) {
                 let url = this.endpoints.list.url
@@ -159,10 +160,28 @@ export default {
                 let response = await this.axios.request(config);
                 this.items = response.data;
             } else {
+                
+                let url = this.endpoints.view.url
+                    .replace(new RegExp("{storage}", "g"), this.storage)
+                    .replace(new RegExp("{path}", "g"), this.path);
+
+                let config = {
+                    url,
+                    method: this.endpoints.view.method || "get",
+                    responseType: 'blob'
+                };
+                await this.axios.request(config).then(response => {
+                console.log(response);
+                const downloadUrl = window.URL.createObjectURL(new Blob([response.data]));
+                this.invoicePDF = downloadUrl
+
+                });
                 // TODO: load file
             }
             this.$emit("loading", false);
-        },
+        }
+        
+        ,
         async deleteItem(item) {
             let confirmed = await this.$refs.confirm.open(
                 "Delete",
