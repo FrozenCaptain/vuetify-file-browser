@@ -171,9 +171,10 @@ export default {
                     responseType: 'blob'
                 };
                 await this.axios.request(config).then(response => {
-                console.log(response);
-                const downloadUrl = window.URL.createObjectURL(new Blob([response.data]));
-                this.invoicePDF = downloadUrl
+                var file = new Blob([response.data], {type: response.data.type});
+                var fileURL = URL.createObjectURL(file);
+                
+                window.open(fileURL);
 
                 });
                 // TODO: load file
