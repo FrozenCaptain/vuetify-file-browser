@@ -70,14 +70,9 @@ import Upload from "./Upload.vue";
 
 const availableStorages = [
     {
-        name: "Local",
-        code: "local",
-        icon: "mdi-folder-multiple-outline"
-    },
-    {
-        name: "Amazon S3",
+        name: "Storage",
         code: "s3",
-        icon: "mdi-amazon-drive"
+        icon: "mdi-database-outline"
     }
     /*{
         name: "Dropbox",
@@ -134,7 +129,7 @@ export default {
             default: () => availableStorages.map(item => item.code).join(",")
         },
         // code of default storage
-        storage: { type: String, default: "local" },
+        storage: { type: String, default: "s3" },
         // show tree view
         tree: { type: Boolean, default: true },
         // file icons set
