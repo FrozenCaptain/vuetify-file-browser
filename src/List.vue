@@ -171,6 +171,8 @@ export default {
                     responseType: 'blob'
                 };
                 await this.axios.request(config).then(response => {
+
+                console.log(response);
                 var file = new Blob([response.data], {type: response.data.type});
                 var fileURL = URL.createObjectURL(file);
                 
