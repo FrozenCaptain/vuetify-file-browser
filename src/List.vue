@@ -164,7 +164,7 @@ export default {
                 let fileUrl = null;
                 const prefix = "item-"
                 const fileItem = JSON.parse(window.sessionStorage.getItem(prefix + this.path));
-                if (fileItem !== null && fileItem !== undefined && fileItem.expire > new Date().getTime()) {
+                if (fileItem !== null && fileItem !== undefined && new Date(fileItem.expire) > new Date().getTime()) {
                     fileUrl = fileItem.url
                 } else {
                     let url = this.endpoints.view.url
