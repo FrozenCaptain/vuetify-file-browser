@@ -7,8 +7,14 @@
         >Select a folder or a file</v-card-text>
         <v-card-text
             v-else-if="isFile"
-            class="grow d-flex justify-center align-center"
-        >File: {{ path }}</v-card-text>
+            class="grow d-flex justify-center align-center flex-column"
+        >
+            <span>File: {{ path }}</span>
+            <br/>
+            <v-btn
+                color="primary"
+                @click="load">Opnieuw openen</v-btn>
+        </v-card-text>
         <v-card-text v-else-if="dirs.length || files.length" class="grow">
             <v-list subheader v-if="dirs.length">
                 <v-subheader>Folders</v-subheader>
