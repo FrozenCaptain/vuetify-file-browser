@@ -48,6 +48,7 @@
                 <span v-else>Up to "{{pathSegments[pathSegments.length - 2].name}}"</span>
             </v-tooltip>
             <v-menu
+            v-if="canModify"
                 v-model="newFolderPopper"
                 :close-on-content-click="false"
                 :nudge-width="200"
@@ -74,7 +75,7 @@
                     </v-card-actions>
                 </v-card>
             </v-menu>
-            <v-btn v-if="path" icon @click="$refs.inputUpload.click()" title="Upload Files">
+            <v-btn v-if="canModify && path" icon @click="$refs.inputUpload.click()" title="Upload Files">
                 <v-icon>mdi-plus-circle</v-icon>
                 <input v-show="false" ref="inputUpload" type="file" multiple @change="addFiles" />
             </v-btn>
@@ -85,6 +86,7 @@
 <script>
 export default {
     props: {
+        canModify:Boolean,
         storages: Array,
         storage: String,
         path: String,

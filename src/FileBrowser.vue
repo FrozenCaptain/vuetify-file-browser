@@ -1,6 +1,7 @@
 <template>
     <v-card class="mx-auto" :loading="loading > 0">
         <toolbar
+            :canModify="canModify"
             :path="path"
             :storages="storagesArray"
             :storage="activeStorage"
@@ -28,6 +29,7 @@
             <v-divider v-if="tree" vertical></v-divider>
             <v-col>
                 <list
+                    :canModify="canModify"
                     :path="path"
                     :storage="activeStorage"
                     :icons="icons"
@@ -143,7 +145,9 @@ export default {
         // max files count to upload at once. Unlimited by default
         maxUploadFilesCount: { type: Number, default: 0 },
         // max file size to upload. Unlimited by default
-        maxUploadFileSize: { type: Number, default: 0 }
+        maxUploadFileSize: { type: Number, default: 0 },
+        // can Modify file structure (client-side visibilty only)
+        canModify: { type: Boolean, default: false },
     },
     data() {
         return {

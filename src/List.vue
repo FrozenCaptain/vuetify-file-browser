@@ -53,7 +53,7 @@
                     </v-list-item-content>
 
                     <v-list-item-action>
-                        <v-btn icon @click.stop="deleteItem(item)">
+                        <v-btn icon @click.stop="deleteItem(item)" v-if="canModify">
                             <v-icon color="grey lighten-1">mdi-delete-outline</v-icon>
                         </v-btn>
                         <v-btn icon v-if="false">
@@ -103,6 +103,7 @@ import Confirm from "./Confirm.vue";
 
 export default {
     props: {
+        canModify: Boolean,
         icons: Object,
         storage: String,
         path: String,
@@ -207,6 +208,7 @@ export default {
     watch: {
         async path() {
             this.items = [];
+            this.filter = "";
             await this.load();
         },
         async refreshPending() {
