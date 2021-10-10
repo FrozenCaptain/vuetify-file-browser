@@ -79,6 +79,7 @@ export default {
         init() {
             this.open = [];
             this.items = [];
+            this.filter =  "";
             // set default files tree items (root item) in nextTick.
             // Otherwise this.open isn't cleared properly (due to syncing perhaps)
             setTimeout(() => {
