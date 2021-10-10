@@ -170,12 +170,10 @@ export default {
                     method: this.endpoints.view.method || "get",
                     //responseType: 'blob'
                 };
-                await this.axios.request(config).then(response => {
-                
+                let response = await this.axios.request(config);
+                console.log(response);
                 window.open(response.data);
-
-                });
-                // TODO: load file
+             
             }
             this.$emit("loading", false);
         }
