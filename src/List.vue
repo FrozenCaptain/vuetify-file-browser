@@ -147,7 +147,7 @@ export default {
         },
         async load() {
             if(this.path === ""){
-                this.changePath("/")
+                 this.$emit("path-changed", "/");
             }
             this.$emit("loading", true);
             if (this.isDir) {
