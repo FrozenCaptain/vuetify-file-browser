@@ -25,11 +25,11 @@
                         <v-list-item-title v-text="item.basename"></v-list-item-title>
                     </v-list-item-content>
                     <v-list-item-action>
-                        <v-btn icon @click.stop="deleteItem(item)">
+                        <v-btn icon @click.stop="deleteItem(item)" v-if="canModify">
                             <v-icon color="grey lighten-1">mdi-delete-outline</v-icon>
                         </v-btn>
-                        <v-btn icon v-if="false">
-                            <v-icon color="grey lighten-1">mdi-information</v-icon>
+                          <v-btn icon>
+                            <v-icon color="grey lighten-1">mdi-open-in-new</v-icon>
                         </v-btn>
                     </v-list-item-action>
                 </v-list-item>
