@@ -94,8 +94,8 @@ export default {
                     }
                 ];
             }, 0);
-            if (this.path !== "") {
-                this.$emit("path-changed", "");
+            if (this.path !== "" || this.path !== "/") {
+                this.$emit("path-changed", "/");
             }
         },
         async readFolder(item) {
