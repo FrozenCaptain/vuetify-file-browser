@@ -146,9 +146,7 @@ export default {
             this.$emit("path-changed", path);
         },
         async load() {
-            if(this.path === ""){
-                 this.$emit("path-changed", "/");
-            }
+            
             this.$emit("loading", true);
             if (this.isDir) {
                 let url = this.endpoints.list.url
@@ -163,6 +161,10 @@ export default {
                 let response = await this.axios.request(config);
                 this.items = response.data;
             } else {
+                if(this.path.trim() === ""){
+                    this.$emit("loading", false);
+                    return;
+                }
                 let fileUrl = null;
                 const prefix = "item-"
                 const fileItem = JSON.parse(window.sessionStorage.getItem(prefix + this.path));
