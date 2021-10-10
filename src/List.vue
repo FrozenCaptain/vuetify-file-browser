@@ -161,20 +161,27 @@ export default {
                 let response = await this.axios.request(config);
                 this.items = response.data;
             } else {
-                
-                let url = this.endpoints.view.url
-                    .replace(new RegExp("{storage}", "g"), this.storage)
-                    .replace(new RegExp("{path}", "g"), this.path);
+                const fileUrl = null;
+                const prefix = "item-"
+                const fileItem = JSON.parse(window.sessionStorage.getItem(prefix + this.path));
+                if (fileItem !== null && fileItem !== undefined && fileItem.expire > new Date().getTime()) {
+                    fileUrl = fileItem.url
+                } else {
+                    let url = this.endpoints.view.url
+                        .replace(new RegExp("{storage}", "g"), this.storage)
+                        .replace(new RegExp("{path}", "g"), this.path);
 
-                let config = {
-                    url,
-                    method: this.endpoints.view.method || "get",
-                    //responseType: 'blob'
-                };
-                let response = await this.axios.request(config);
-                console.log(response);
-                window.open(response.data);
-             
+                    let config = {
+                        url,
+                        method: this.endpoints.view.method || "get",
+                        //responseType: 'blob'
+                    };
+                    let response = await this.axios.request(config);
+                    window.sessionStorage.setItem(prefix + this.path, JSON.stringify(response.data));
+                    
+                    fileUrl = response.data.url
+                }
+                window.open(fileUrl);
             }
             this.$emit("loading", false);
         }
