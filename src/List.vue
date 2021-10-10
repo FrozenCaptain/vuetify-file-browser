@@ -146,7 +146,7 @@ export default {
             this.$emit("path-changed", path);
         },
         async load() {
-            
+            this.path = this.path === "" ? "/" : this.path;
             this.$emit("loading", true);
             if (this.isDir) {
                 let url = this.endpoints.list.url
