@@ -168,15 +168,11 @@ export default {
                 let config = {
                     url,
                     method: this.endpoints.view.method || "get",
-                    responseType: 'blob'
+                    //responseType: 'blob'
                 };
                 await this.axios.request(config).then(response => {
-
-                console.log(response);
-                var file = new Blob([response.data], {type: response.data.type});
-                var fileURL = URL.createObjectURL(file);
                 
-                window.open(fileURL);
+                window.open(response.data);
 
                 });
                 // TODO: load file
