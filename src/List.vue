@@ -161,7 +161,7 @@ export default {
                 let response = await this.axios.request(config);
                 this.items = response.data;
             } else {
-                const fileUrl = null;
+                let fileUrl = null;
                 const prefix = "item-"
                 const fileItem = JSON.parse(window.sessionStorage.getItem(prefix + this.path));
                 if (fileItem !== null && fileItem !== undefined && fileItem.expire > new Date().getTime()) {
